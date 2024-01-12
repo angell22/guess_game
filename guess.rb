@@ -62,8 +62,6 @@ def start_game(secret_number)
         guessed_numbers << user_number
         break
       end
-
-      return play_again
     end
   
     puts "You chose #{user_number}"
