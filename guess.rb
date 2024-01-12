@@ -16,15 +16,35 @@ def hard_level
   start_game (secret_number)
 end
 
+def scorer(count, user_number, secret_number)
+  if count == 1 && user_number == secret_number
+    score = 100
+  elsif count == 2 && user_number == secret_number
+    score = 80
+  elsif count == 3 && user_number == secret_number
+    score = 60
+  elsif count == 4 && user_number == secret_number
+    score = 40
+  elsif count == 5 && user_number == secret_number
+    score = 20
+  elsif count == 6 && user_number == secret_number
+    score = 10
+  else
+    score = 0
+  end
+end
+
 def start_game(secret_number)
   count = 0
   guessed_numbers = [] 
+  score = 0
 
   while count < 6
     user_number = 0
   
     loop do
       puts "Guess a number: "
+      puts "The secret number is: #{secret_number}"
       user_number = gets.chomp.to_i
   
       if guessed_numbers.include?(user_number)
@@ -45,6 +65,9 @@ def start_game(secret_number)
       puts "Aahh that's too high! Please try again."
     else
       puts "Yay! Congratulation. You guessed it right!"
+      
+      score = scorer(count + 1, user_number, secret_number)
+      puts "Your score is: #{score}"
       break
     end
   
