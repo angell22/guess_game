@@ -47,11 +47,12 @@ class Game
 
   def start_game(secret_number)
     count = 0
+    max_attempts = 6
     guessed_numbers = [] 
     score = 0
     play_again = "N"
 
-    while count < 6
+    while count < max_attempts
       user_number = 0
     
       loop do
@@ -71,7 +72,7 @@ class Game
       puts "You have guessed: #{guessed_numbers}" 
     
       if user_number < secret_number
-        puts "Oops! The number you guess is lower than the secret number. Please try again." 
+        puts "Oops! The number you guess is lower than the secret number." 
       elsif user_number > secret_number
         puts "Aahh that's too high! Please try again."
       else
@@ -85,6 +86,12 @@ class Game
       end
     
       count += 1
+    end
+
+    if count == 6
+      puts "Sorry, you have reached the maximum number of attempts. The secret number was #{secret_number}."
+      puts "Do you want to play again? Y(Yes) or N(No)"
+      play_again = gets.chomp.upcase
     end
 
     case play_again
