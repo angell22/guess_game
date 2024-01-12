@@ -1,14 +1,17 @@
 def easy_level
+  puts "Guess a number between 1-20"
   secret_number = rand(1..20)
   start_game (secret_number)
 end
 
 def medium_level
+  puts "Guess a number between 1-50"
   secret_number = rand(1..50)
   start_game (secret_number)
 end
 
 def hard_level
+  puts "Guess a number between 1-100"
   secret_number = rand(1..100)
   start_game (secret_number)
 end
@@ -34,7 +37,7 @@ def start_game(secret_number)
     end
   
     puts "You chose #{user_number}"
-    puts "Your have guessed: #{guessed_numbers}" 
+    puts "You have guessed: #{guessed_numbers}" 
   
     if user_number < secret_number
       puts "Oops! The number you guess is lower than the secret number. Please try again." 
