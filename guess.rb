@@ -34,10 +34,19 @@ def scorer(count, user_number, secret_number)
   end
 end
 
+def start_again(secret_number)
+  start_game (secret_number)
+end
+
+def exit_game
+  puts "Thank you for playing!"
+end
+
 def start_game(secret_number)
   count = 0
   guessed_numbers = [] 
   score = 0
+  play_again = "N"
 
   while count < 6
     user_number = 0
@@ -54,6 +63,8 @@ def start_game(secret_number)
         guessed_numbers << user_number
         break
       end
+
+      return play_again
     end
   
     puts "You chose #{user_number}"
@@ -65,13 +76,24 @@ def start_game(secret_number)
       puts "Aahh that's too high! Please try again."
     else
       puts "Yay! Congratulation. You guessed it right!"
-      
+
       score = scorer(count + 1, user_number, secret_number)
       puts "Your score is: #{score}"
+      puts "Do you want to play again? Y(Yes) or N(No)"
+      play_again = gets.chomp.upcase
       break
     end
   
     count += 1
+  end
+
+  case play_again
+  when "Y"
+    play_again = start_again(secret_number)
+  when "N"
+    exit_game
+  else
+    puts "Invalid!"
   end
 end
 
@@ -79,7 +101,7 @@ puts "Hello. Welcome to Angell Guess Game!"
 puts "Please choose the level you would like to play: 1) Easy Level 2) Medium Level 3) Hard Level"
 level = gets.chomp.to_i
 
-case level
+secret_number = case level
 when 1 
   easy_level
 when 2
@@ -89,6 +111,3 @@ when 3
 else
   puts "Choose the existing level only!"
 end
-
-
-
