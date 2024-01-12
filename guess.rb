@@ -53,7 +53,6 @@ def start_game(secret_number)
   
     loop do
       puts "Guess a number: "
-      puts "The secret number is: #{secret_number}"
       user_number = gets.chomp.to_i
   
       if guessed_numbers.include?(user_number)
