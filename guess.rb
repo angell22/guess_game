@@ -38,6 +38,23 @@ class Game
   end
 
   def start_again(secret_number)
+    puts "Please choose the level you would like to play: 1) Easy Level 2) Medium Level 3) Hard Level"
+    level = gets.chomp.to_i
+
+    game = Game.new(level)
+
+    case @level
+    when 1 
+      secret_number = rand(1..20)
+    when 2
+      secret_number = rand(1..50)
+    when 3
+      secret_number = rand(1..100)
+    else
+      puts "Choose the existing level only!"
+      return
+    end
+
     start_game(secret_number)
   end
 
@@ -72,7 +89,7 @@ class Game
       puts "You have guessed: #{guessed_numbers}" 
     
       if user_number < secret_number
-        puts "Oops! The number you guess is lower than the secret number." 
+        puts "Oops! The number you guess is lower than the secret number. Please try again." 
       elsif user_number > secret_number
         puts "Aahh that's too high! Please try again."
       else
